@@ -4,17 +4,17 @@ A clean, minimal TUI-inspired watchface for the **Garmin Instinct 2 dēzl Editio
 
 ![tui-face preview](docs/preview.png)
 
-Boxed panels with labels knocked into the frame, terminal style. White-on-black, drawn entirely with 1-bit primitives — every pixel is pure black or white, which is exactly what the Instinct's 176×176 MIP panel displays.
+Boxed panels with labels knocked into the frame, terminal style. White-on-black, drawn entirely with 1-bit primitives — every pixel is pure black or white, which is exactly what the Instinct's 176×176 MIP panel displays. Time and heart rate are rendered in a custom **5×7 dot-matrix digit face** built from pixel blocks (no font resources), so the numerals stay crisp and terminal-flavored at any size.
 
 ## Layout
 
-| Region       | Content                                                              |
-| ------------ | -------------------------------------------------------------------- |
-| `TIME` panel | hh:mm in the largest number font that fits; AM/PM chip in 12-h mode  |
-| subscreen ◯  | `HR` label + current heart rate (`--` when no reading)               |
-| `DATE` panel | `DOW YYYY-MM-DD`                                                      |
-| `SYS` panel  | `BAT` and `STP` rows: label, 10-segment meter, value                  |
-| footer       | `user@dezl:~$` prompt                                                 |
+| Region       | Content                                                                    |
+| ------------ | --------------------------------------------------------------------------- |
+| `SYS` panel  | `BAT` and `STP` blocks beside the subscreen: label + value, 10-segment meter |
+| subscreen ◯  | `HR` label + current heart rate in matrix digits (`--` when no reading)     |
+| `DATE` panel | `DOW YYYY-MM-DD`                                                             |
+| `TIME` panel | full-width hero: hh:mm in 5×7 dot-matrix digits; AM/PM chip in 12-h mode    |
+| footer       | `user@dezl:~$` prompt                                                        |
 
 The circular subscreen geometry is read from `WatchUi.getSubscreen()` at runtime (with a hardcoded Instinct 2 fallback), so heart rate always lands inside the physical cutout. The face does one full redraw per minute — no high-power partial updates, easy on the battery.
 
